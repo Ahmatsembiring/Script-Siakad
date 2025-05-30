@@ -1,0 +1,112 @@
+aktifkan dahulu 'allow pasting' pada inspect console
+
+kode 1
+copy dari sini--
+var data = "kodedosen=&kodemk=&152=4&153=4&154=4&155=4&156=4&157=4&158=4";
+var urls = [
+  "https://siakad.itera.ac.id/mahasiswa/kuesioner/simpan/15",
+  "https://siakad.itera.ac.id/mahasiswa/kuesioner/simpan/16",
+  "https://siakad.itera.ac.id/mahasiswa/kuesioner/simpan/17",
+  "https://siakad.itera.ac.id/mahasiswa/kuesioner/simpan/18",
+  "https://siakad.itera.ac.id/mahasiswa/kuesioner/simpan/19"
+];
+ 
+for (var i = 0; i < urls.length; i++) {
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", urls[i], true);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xhr.send(data);
+  console.log("POST request sent to: " + urls[i]);
+}
+**sampai sini**--
+
+kode 2
+**copy dari sini--**
+var templateData = 'kodedosen=KODEDOSEN&kodemk=KODEMK&128=4&129=4&130=4&131=4&132=4&133=4&134=4&135=4&136=4&137=4&138=4&139=4&140=4';
+var urls = [];
+ 
+var targetUrl = 'https://siakad.itera.ac.id/mahasiswa/kuesioner/simpan/13';
+ 
+fetch(targetUrl)
+  .then(response => response.text())
+  .then(data => {
+    var parser = new DOMParser();
+    var doc = parser.parseFromString(data, 'text/html');
+    var links = doc.querySelectorAll('a[href^="https://siakad.itera.ac.id/mahasiswa/kuesioner/isi/13/"]');
+ 
+    links.forEach(link => {
+      urls.push(link.href);
+    });
+ 
+    urls.forEach(function(url) {
+      var parts = url.split('/');
+      var kodedosen = parts[parts.length - 2];
+      var kodemk = parts[parts.length - 1];
+      var postData = templateData.replace('KODEDOSEN', kodedosen).replace('KODEMK', kodemk);
+      var data = new URLSearchParams(postData);
+ 
+      fetch(targetUrl, {
+        method: 'POST',
+        body: data,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      })
+      .then(response => response.text())
+      .then(data => {
+        console.log('Berhasil mengirim POST request ke: ' + url);
+      })
+      .catch(error => {
+        console.error('Gagal mengirim POST request ke: ' + url);
+      });
+    });
+  })
+  .catch(error => {
+    console.error('Gagal mengambil data dari: ' + targetUrl);
+  });
+**sampai sini**--
+
+kode 3
+**copy dari sini**--
+var templateData = 'kodedosen=KODEDOSEN&kodemk=KODEMK&141=4&142=4&143=4&144=4&145=4&146=4&147=4&148=4&149=4&150=4&151=4';
+var urls = [];
+ 
+var targetUrl = 'https://siakad.itera.ac.id/mahasiswa/kuesioner/simpan/14';
+ 
+fetch(targetUrl)
+  .then(response => response.text())
+  .then(data => {
+    var parser = new DOMParser();
+    var doc = parser.parseFromString(data, 'text/html');
+    var links = doc.querySelectorAll('a[href^="https://siakad.itera.ac.id/mahasiswa/kuesioner/isi/14/"]');
+    links.forEach(link => {
+      urls.push(link.href);
+    });
+ 
+    urls.forEach(function(url) {
+      var parts = url.split('/');
+      var kodedosen = parts[parts.length - 2];
+      var kodemk = parts[parts.length - 1];
+      var postData = templateData.replace('KODEDOSEN', kodedosen).replace('KODEMK', kodemk);
+      var data = new URLSearchParams(postData);
+ 
+      fetch(targetUrl, {
+        method: 'POST',
+        body: data,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      })
+      .then(response => response.text())
+      .then(data => {
+        console.log('Berhasil mengirim POST request ke: ' + url);
+      })
+      .catch(error => {
+        console.error('Gagal mengirim POST request ke: ' + url);
+      });
+    });
+  })
+  .catch(error => {
+    console.error('Gagal mengambil data dari: ' + targetUrl);
+  });
+**sampai sini**--
