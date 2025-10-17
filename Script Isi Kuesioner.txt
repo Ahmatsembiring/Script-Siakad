@@ -1,0 +1,138 @@
+/*
+SCRIPT KUESIONER SIAKAD (BERASA JOKI)(Versi 2025)
+Creator : Anggap aja NIM 136 IF 22
+NOTED!!! BUKAN HACK INI MAH, SEKIP AJA KALO GAPAHAM
+JIKA MASIH ADA KUESIONER YANG BELUM KEISI BISA DICOBA COPAS ULANG SESUAI BAGIAN YANG TIDAK TERISI!!!
+ 
+Cara penggunaan :
+1. Login ke SIAKAD dan buka halaman kuesioner
+2. Masuk ke console browser dengan cara tekan CTRL+SHIFT+J pada Chrome dan CTRL+SHIFT+K pada Firefox
+3. Ketikkan tulisan "allow pasting" tanpa tanda kutip kemudian enter, abaikan jika error
+4. Kemudian copy kode di bawah sesuai urutan kemudian enter (harus satu-satu)
+ 
+BACA DULU :
+• Untuk paste kode harus perbagian kemudian enter, misal bagian pertama dulu baru enter, setelah selesai bagian kedua baru enter, lanjut kebagian ketiga baru enter
+• Untuk bagian kedua dan ketiga tunggu sebentar, sampai seluruh proses selesai dijalankan baru lanjut copas code berikutnya
+• Metode ini sangat aman dan bukan peretasan
+• Jika ingin mengisi variasi ganti angka =4 pada link dengan :
+  1. Sangat Tidak Setuju
+  2. Tidak Setuju
+  3. Setuju
+  4. Sangat Setuju
+  Contoh : kodedosen=&kodemk=&152=3&153=3&154=3&155=3&156=3&157=3&158=3 // bisa dilihat dari&152=4 jadi &152=3
+         : kodedosen=KODEDOSEN&kodemk=KODEMK&128=3&129=3&130=3&131=3&132=3&133=3&134=3&135=3&136=3&137=3&138=3&139=3&140=3
+*/
+ 
+// BERIKUT KODENYA LUR
+ 
+//Kode pertama :
+// Copas dari sini
+var data = "kodedosen=&kodemk=&195=4&196=4&197=4&198=4&199=4&200=4&201=4&202=4";
+var urls = [
+  "https://siakad.itera.ac.id/mahasiswa/kuesioner/simpan/22",
+  "https://siakad.itera.ac.id/mahasiswa/kuesioner/simpan/23",
+  "https://siakad.itera.ac.id/mahasiswa/kuesioner/simpan/24",
+  "https://siakad.itera.ac.id/mahasiswa/kuesioner/simpan/25",
+  "https://siakad.itera.ac.id/mahasiswa/kuesioner/simpan/26"
+];
+ 
+for (var i = 0; i < urls.length; i++) {
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", urls[i], true);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xhr.send(data);
+  console.log("POST request sent to: " + urls[i]);
+}
+ 
+// BATAS COPAS KODE PERTAMA
+ 
+//Kode kedua :
+// Copas dari sini
+var templateData = 'kodedosen=KODEDOSEN&kodemk=KODEMK&171=4&172=4&173=4&174=4&175=4&176=4&177=4&178=4&179=4&180=4&181=4&182=4&183=4';
+var urls = [];
+ 
+var targetUrl = 'https://siakad.itera.ac.id/mahasiswa/kuesioner/simpan/20';
+ 
+fetch(targetUrl)
+  .then(response => response.text())
+  .then(data => {
+    var parser = new DOMParser();
+    var doc = parser.parseFromString(data, 'text/html');
+    var links = doc.querySelectorAll('a[href^="https://siakad.itera.ac.id/mahasiswa/kuesioner/isi/20/"]');
+ 
+    links.forEach(link => {
+      urls.push(link.href);
+    });
+ 
+    urls.forEach(function(url) {
+      var parts = url.split('/');
+      var kodedosen = parts[parts.length - 2];
+      var kodemk = parts[parts.length - 1];
+      var postData = templateData.replace('KODEDOSEN', kodedosen).replace('KODEMK', kodemk);
+      var data = new URLSearchParams(postData);
+ 
+      fetch(targetUrl, {
+        method: 'POST',
+        body: data,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      })
+      .then(response => response.text())
+      .then(data => {
+        console.log('Berhasil mengirim POST request ke: ' + url);
+      })
+      .catch(error => {
+        console.error('Gagal mengirim POST request ke: ' + url);
+      });
+    });
+  })
+  .catch(error => {
+    console.error('Gagal mengambil data dari: ' + targetUrl);
+  });
+ 
+// BATAS COPAS KODE KEDUA
+ 
+//Kode ketiga :
+// Copas dari sini
+var templateData = 'kodedosen=KODEDOSEN&kodemk=KODEMK&184=4&185=4&186=4&187=4&188=4&189=4&190=4&191=4&192=4&193=4&194=4';
+var urls = [];
+ 
+var targetUrl = 'https://siakad.itera.ac.id/mahasiswa/kuesioner/simpan/21';
+ 
+fetch(targetUrl)
+  .then(response => response.text())
+  .then(data => {
+    var parser = new DOMParser();
+    var doc = parser.parseFromString(data, 'text/html');
+    var links = doc.querySelectorAll('a[href^="https://siakad.itera.ac.id/mahasiswa/kuesioner/isi/21/"]');
+    links.forEach(link => {
+      urls.push(link.href);
+    });
+ 
+    urls.forEach(function(url) {
+      var parts = url.split('/');
+      var kodedosen = parts[parts.length - 2];
+      var kodemk = parts[parts.length - 1];
+      var postData = templateData.replace('KODEDOSEN', kodedosen).replace('KODEMK', kodemk);
+      var data = new URLSearchParams(postData);
+ 
+      fetch(targetUrl, {
+        method: 'POST',
+        body: data,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      })
+      .then(response => response.text())
+      .then(data => {
+        console.log('Berhasil mengirim POST request ke: ' + url);
+      })
+      .catch(error => {
+        console.error('Gagal mengirim POST request ke: ' + url);
+      });
+    });
+  })
+  .catch(error => {
+    console.error('Gagal mengambil data dari: ' + targetUrl);
+  });
