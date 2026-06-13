@@ -1,0 +1,10 @@
+const values = ["3", "4"];
+document.querySelectorAll('.form-group').forEach(group => {
+    // Pilih acak antara value 3 atau 4
+    const randomValue = values[Math.floor(Math.random() * values.length)];
+    const radio = group.querySelector(input[type="radio"][value="${randomValue}"]);
+    if (radio) radio.checked = true;
+});
+
+
+Inspect element  - > console  , copy code ini untuk auto "Setuju" , dan "Sangat Setuju"
